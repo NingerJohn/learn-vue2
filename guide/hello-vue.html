@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Vue </title>
+    <script src="./js/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- <div id="app">
+	{{message}}
+</div>
+
+<script type="text/javascript">
+// data output
+var app = new Vue({
+	el:'#app',
+	data:{
+		message:'Hello vue!'
+	}
+})
+
+</script> -->
+
+<!-- <div id="app-2">
+	<span v-bind:title='message'>
+		鼠标悬停几秒钟查看此处动态绑定的提示信息！
+	</span>
+</div>
+
+<script type="text/javascript">
+// data binding
+var app = new Vue({
+	el:'#app-2',
+	data:{
+		message:'页面加载于 ' + new Date()
+	}
+})
+</script> -->
+
+
+<!-- <div id="app-3">
+	<span v-if='show'>
+		现在你看到我了
+	</span>
+</div>
+
+<script type="text/javascript">
+// if statement
+var app3 = new Vue({
+	el:'#app-3',
+	data:{
+		show:true
+	}
+})
+</script> -->
+
+<!-- <div id="app-4">
+	<ol>
+		<li v-for="item in todos">
+			{{item.text}}
+		</li>
+	</ol>
+</div>
+
+<script type="text/javascript">
+// for loop
+var app4 = new Vue({
+	el:'#app-4',
+	data:{
+		todos:[
+			{text:'learn javascript'},
+			{text:'learn vue'},
+			{text:'learn how to create a project using vue'},
+		]
+	}
+})
+</script> -->
+
+<!-- <div id="app-5">
+	<p>
+		{{message}}
+	</p>
+	<button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<script type="text/javascript">
+// event binding
+var app5 = new Vue({
+	el:'#app-5',
+	data:{
+		message:'This is a test'
+	},
+	methods:{
+		reverseMessage:function() {
+			this.message = this.message.split('').reverse().join('');
+			console.log(this.message);
+		}
+	}
+})
+</script> -->
+
+
+<!-- <div id="app-6">
+	<p>
+		{{message}}
+	</p>
+	<input v-model="message" placeholder="请输入名字">
+</div>
+
+<script type="text/javascript">
+// data-binding
+var app6 = new Vue({
+	el:'#app-6',
+	data:{
+		message:''
+	},
+})
+</script> -->
+
+<div id="app-7">
+	<todo-item v-for="item in todos" v-bind:todo="item"></todo-item>
+</div>
+
+<script type="text/javascript">
+// component way
+
+Vue.component('todo-item', {
+	props:['todo'],
+	template:'<li>{{ todo.text }}</li>',
+});
+
+var app7 = new Vue({
+	el:'#app-7',
+	data:{
+		todos:[
+			{ text: 'Vegetables' },
+			{ text: 'Cheese' },
+			{ text: 'Whatever else humans are supposed to eat' }
+		]
+	},
+	created:function() {
+		console.log('created');
+	}
+})
+
+console.log(app7.todos);
+console.log(app7.$data);
+
+app7.todos = [];
+
+console.log(app7.todos);
+console.log(app7.$data);
+
+</script>
