@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title> Vue </title>
     <script src="./js/vue.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../common/css/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -119,13 +119,12 @@ var app6 = new Vue({
 })
 </script> -->
 
-<div id="app-7">
+<!-- <div id="app-7">
 	<todo-item v-for="item in todos" v-bind:todo="item"></todo-item>
 </div>
 
 <script type="text/javascript">
 // component way
-
 Vue.component('todo-item', {
 	props:['todo'],
 	template:'<li>{{ todo.text }}</li>',
@@ -148,9 +147,43 @@ var app7 = new Vue({
 console.log(app7.todos);
 console.log(app7.$data);
 
-app7.todos = [];
 
-console.log(app7.todos);
-console.log(app7.$data);
+</script> -->
+
+
+<div id="app-8">
+	<button v-on:click="test">Change</button>
+	<a v-bind:href="url" target="_blank">baidu</a>
+</div>
+
+<script type="text/javascript">
+var data = {a:1, url:'http://www.baidu.com'};
+var vm = new Vue({
+	el:'#app-8',
+	data:data,
+	methods:{
+		test:function(){
+			this.a = 2;
+			console.log(this.a);
+		}
+	},
+})
+// console.log(vm.a === data.a);
+// data.a = 2;
+// console.log(vm.a);
+// console.log(vm.$data == data);
+// console.log(vm.data);
+
+// vm.$watch('a', function(newV, oldV){
+// 	console.log(newV);
+// 	console.log(oldV);
+// });
 
 </script>
+
+
+
+
+
+
+
