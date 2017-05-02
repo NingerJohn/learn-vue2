@@ -1,0 +1,39 @@
+body{
+	background-color: white;
+	margin:0px;
+	width: 100%;
+	height: 100%;
+}
+
+.window-box{
+	width: 100%;
+	height: 100%;
+}
+
+.chat-window-box{
+	margin: 150px auto;
+	height: 640px;
+
+	/*width: 860px;*/
+}
+
+
+.left-icon-menu{
+	background-color: #27292D;
+	height: 640px;
+	width:60px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.second-level-column{
+	background-color: #EBE9E8;
+	height: 640px;
+	width:250px;
+}
+.right-content-box{
+	background-color: #F5F5F5;
+	height: 640px;
+	width: 550px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
