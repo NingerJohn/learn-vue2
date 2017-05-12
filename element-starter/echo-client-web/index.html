@@ -14,22 +14,13 @@
 <body>
 
 <div id="app">
-
-<el-col v-bind:span="24" class="window-box">
-
-	<el-row type="flex" justify="center" class="chat-window-box">
-		<el-col :span=1 style="background-color:red">
-			<div style="background-color:red"></div>
-		</el-col>
-		<el-col :span=4 style="background-color:yellow"></el-col>
-		<el-col :span=8 style="background-color:orange"></el-col>
-	</el-row>
-
-</el-col>
-
-
-
-
+	<el-col v-bind:span="24" class="window-box">
+		<div class="chat-window-box">
+			<el-col :lg=2 :md=2 :sm=2 :xs=2 class="box-item left-box"></el-col>
+			<el-col :lg=8 :md=8 :sm=8 :xs=8 class="box-item middle-box"></el-col>
+			<el-col :lg=14 :md=14 :sm=14 :xs=14 class="box-item right-box"></el-col>
+		</div>
+	</el-col>
 </div>
 
 

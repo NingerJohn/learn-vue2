@@ -48,36 +48,51 @@
 
 <div id="app">
     <el-row>
-        <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
+      <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row>
     <el-row>
-        <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
-        <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
     </el-row>
     <el-row>
-        <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-        <el-col :span="8"><div class="grid-content bg-purple-light"></div></el-col>
-        <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="8"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
     </el-row>
     <el-row>
-        <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-        <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
-        <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
-        <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
     </el-row>
     <el-row>
-        <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-        <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
-        <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-        <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
-        <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-        <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
     </el-row>
 
     <el-button type="primary" size="normal" @click="visible = true" >按钮</el-button>
     <el-dialog title="Hello world" top="40%" size="tiny" v-model="visible">
-        <p>欢迎使用 Element</p>
+      <p>欢迎使用 Element</p>
     </el-dialog>
+
+    <el-input v-model="test" placeholder="just for test" @change="listenChange"></el-input>
+
+    <template>
+      <el-select v-model="value" placeholder="请选择" @change="showOption">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </el-option>
+      </el-select>
+    </template>
+
 </div>
 
 
@@ -87,14 +102,40 @@
 
 
 
-</body>
-
 <script type="text/javascript">
 var app = new Vue({
     el: '#app',
     data: {
-        visible: false
+        visible: false,
+        test:'',
+        options:[{
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }, {
+          value: '选项4',
+          label: '龙须面'
+        }, {
+          value: '选项5',
+          label: '北京烤鸭'
+        }],
+        value:''
+    },
+    methods:{
+        listenChange:function() {
+            console.log(this.test);
+        },
+        showOption:function() {
+            console.log(this.value);
+        }
     }
 })
 </script>
+
+</body>
 </html>
