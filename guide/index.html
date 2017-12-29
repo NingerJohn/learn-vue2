@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="app">
+    输出值：{{ message }}
+</div>
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>      
+
+<br>--------------------------------------</br></br>
+
+<div id="app-2">
+    <span v-bind:title="message">
+        绑定值到title属性：鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+</div>
+<script>
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    message: '页面加载于 ' + new Date().toLocaleString()
+  }
+})
+</script>
+<br>--------------------------------------</br></br>
+
+<div id="app-3">
+    条件判断：<p v-if="seen">现在你看到我了</p>
+</div>
+
+<script>
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+})
+</script>
+<br>--------------------------------------</br></br>
+
+<div id="app-4">
+    循环输出:
+    <ol>
+        <li v-for="todo in todos">
+        {{ todo.text }}
+        </li>
+    </ol>
+    <input type="text" v-model="newItem">
+    <input type="button" v-on:click='addNewItem()' value="添加">
+</div>
+
+<script>
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: '学习 JavaScript' },
+      { text: '学习 Vue' },
+      { text: '整个牛项目' }
+    ],
+    newItem:'',
+  },
+  methods:{
+      addNewItem:function(a){
+          this.todos.push({'text':this.newItem});
+          this.newItem = '';
+      }
+  }
+})
+</script>
+
+<br>--------------------------------------</br></br>
+
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">逆转消息</button>
+</div>
+<script>
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
+
+</script>
+
+<br>--------------------------------------</br></br>
+
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+  </div>
+
+<script>
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>
+
+
+<br>--------------------------------------</br></br>
+
+
+<div id="app-7">
+  <ol>
+    <!--
+      现在我们为每个 todo-item 提供 todo 对象
+      todo 对象是变量，即其内容可以是动态的。
+      我们也需要为每个组件提供一个“key”，稍后再
+      作详细解释。
+    -->
+    <todo-item
+      v-for="item in groceryList"
+      v-bind:todo="item"
+      v-bind:key="item.id">
+    </todo-item>
+  </ol>
+</div>
+
+<script>
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{ todo.text }}</li>'
+})
+
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    groceryList: [
+      { id: 0, text: '蔬菜' },
+      { id: 1, text: '奶酪' },
+      { id: 2, text: '随便其它什么人吃的东西' }
+    ]
+  }
+})
+</script>
+
+<br>--------------------------------------</br></br>
+
+<div id="app-8">
+    <input type="text" v-model="a" placeholder="请输入值改变a的值">    
+</div>
+
+
+<script>
+var vm = new Vue({
+    el:'#app-8',
+    data : {a:123,b:0},
+    watch:{
+        a:function(newVal, oldVal){
+            console.log('The Value of A has been changed from ' + oldVal + ' to ' + newVal);
+        }
+    },
+    created:function(){
+        console.log('a is ' + this.a);
+    },
+    mounted:function(){
+        console.log('mounted');
+    },
+})
+</script>
+
+<br>--------------------------------------</br></br>
+
+<div id="app-9">
+    <span v-once>Message: {{msg}}</span>
+    <p>Using mustaches: {{rawHtml}}</p>
+    <p>Using v-html directive: <span v-html="rawHtml">ABC</span> </p>
+    <div v-bind:id="dynamicId"></div>
+    <button v-bind:disabled="isBtnDisabled">One</button>
+    <div>
+        "number+1"表达式：{{number+1}}
+    </div>
+    <div>
+        {{isBtnDisabled ? 'Yes' : 'No'}}
+    </div>
+    <div>
+        {{msg.split('').reverse().join('')}}
+    </div>
+    <div v-bind:class="classControl">
+        <input type="text" v-model="classValue">
+        <br>
+        测试Class样式名
+        <div v-bind:class="{active:isActive, 'text-danger':hasError}">对象形式绑定class：{active:isActive, 'text-danger':hasError}"</div>
+        <div v-bind:class="[activeClass, errorClass]">数组形式绑定class：[activeClass, errorClass]"</div>
+        <div v-bind:class="[{active:isActive}, errorClass]">数组对象形式绑定class：v-bind:class="[{active:isActive}, errorClass]"</div>
+        <div v-bind:style="{color:colorRed, fontSize:'20px'}" >内联样式绑定方式</div>
+        <div v-bind:style="styleControl" >对象控制内联样式绑定方式</div>
+    </div>
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>No</h1>
+    <template v-if="ok">
+        <h1>Title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </template>
+
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="email-input">
+    </template>
+      <input type="button" value="Toggle Login Type" @click="toggleLoginType">
+</div>
+
+
+<script>
+var vm = new Vue({
+    el:'#app-9',
+    data : {
+        msg:'default message',
+        rawHtml:'<span style="color: red">This should be red.</span>',
+        dynamicId:'one',
+        isBtnDisabled:true,
+        number:1,
+        isActive:true,
+        hasError:false,
+        classValue:'',
+        activeClass:'active',
+        errorClass:'text-danger',
+        colorRed:'#9c27b0',
+        styleControl:{
+            color:'red',
+            fontSize:'25px'
+        },
+        ok:true,
+        loginType:'username'
+    },
+    computed:{
+        classControl:function(){
+            return {
+                active: this.classValue,
+                'text-danger' : !this.classValue
+            }
+        }
+    },
+    methods:{
+        toggleLoginType:function(){
+            this.loginType = this.loginType == 'username' ? 'email' : 'username';
+        }
+    }
+})
+vm.msg = 'new message';
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
